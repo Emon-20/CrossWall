@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>CrossWall — Strategic Board Game</title>
+    <meta name="description" content="CrossWall is a strategic multiplayer board game where players race to the goal while placing walls to block opponents. Play 2-player or 4-player modes locally or against AI.">
+    <meta name="theme-color" content="#0c0f1a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ═══════════════ Main Menu ═══════════════ -->
+    <div id="menu-screen" class="screen active">
+        <div class="menu-container">
+            <h1 class="game-title">CROSS<span class="accent">WALL</span></h1>
+            <p class="subtitle">Strategic Board Game</p>
+            <nav class="menu-options" aria-label="Game mode selection">
+                <button class="menu-btn" id="btn-2player">
+                    <span class="btn-icon">👥</span>
+                    <span class="btn-text">2 Players</span>
+                    <span class="btn-desc">13 × 9 Grid</span>
+                </button>
+                <button class="menu-btn" id="btn-4player">
+                    <span class="btn-icon">👥👥</span>
+                    <span class="btn-text">4 Players</span>
+                    <span class="btn-desc">Free-for-All</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ═══════════════ Level Select ═══════════════ -->
+    <div id="level-screen" class="screen">
+        <div class="menu-container">
+            <button class="back-btn" id="btn-back-level" aria-label="Go back">← Back</button>
+            <h2 class="screen-title">Select Level</h2>
+            <div id="level-options" class="menu-options"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ Matchup Select ═══════════════ -->
+    <div id="matchup-screen" class="screen">
+        <div class="menu-container">
+            <button class="back-btn" id="btn-back-matchup" aria-label="Go back">← Back</button>
+            <h2 class="screen-title">Play Mode</h2>
+            <div class="menu-options">
+                <button class="menu-btn" id="btn-local">
+                    <span class="btn-icon">🎮</span>
+                    <span class="btn-text">Local Multiplayer</span>
+                    <span class="btn-desc">Same device</span>
+                </button>
+                <button class="menu-btn" id="btn-ai">
+                    <span class="btn-icon">🤖</span>
+                    <span class="btn-text">vs Computer</span>
+                    <span class="btn-desc">AI opponent</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ Game Screen ═══════════════ -->
+    <div id="game-screen" class="screen">
+        <div class="game-layout">
+
+            <!-- HUD -->
+            <header class="hud">
+                <div class="hud-left">
+                    <button class="hud-btn" id="btn-menu" aria-label="Return to menu">☰ Menu</button>
+                </div>
+                <div class="hud-center">
+                    <div class="turn-indicator">
+                        <div class="turn-color" id="turn-color"></div>
+                        <span id="turn-text">Player 1's Turn</span>
+                    </div>
+                </div>
+                <div class="hud-right">
+                    <div class="action-selector">
+                        <button class="action-btn active" id="btn-move" data-action="move">🏃 Move</button>
+                        <button class="action-btn" id="btn-wall" data-action="wall">🧱 Wall (<span id="wall-count">10</span>)</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Board -->
+            <div class="board-wrapper">
+                <canvas id="game-board" aria-label="CrossWall game board"></canvas>
+                <div class="wall-orientation" id="wall-orientation" style="display:none">
+                    <button class="orient-btn active" id="btn-horizontal" data-orient="h">━ Horizontal</button>
+                    <button class="orient-btn" id="btn-vertical" data-orient="v">┃ Vertical</button>
+                </div>
+            </div>
+
+            <!-- Player Panel -->
+            <footer class="players-panel" id="players-panel" aria-label="Player information"></footer>
+
+        </div>
+    </div>
+
+    <!-- ═══════════════ Win Overlay ═══════════════ -->
+    <div id="win-overlay" class="overlay" role="dialog" aria-modal="true">
+        <div class="win-content">
+            <div class="confetti-container" id="confetti"></div>
+            <h2 class="win-title" id="win-title">🎉 Player Wins! 🎉</h2>
+            <p class="win-subtitle" id="win-subtitle">Congratulations!</p>
+            <div class="win-actions">
+                <button class="menu-btn" id="btn-play-again">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">Play Again</span>
+                </button>
+                <button class="menu-btn secondary" id="btn-main-menu">
+                    <span class="btn-icon">🏠</span>
+                    <span class="btn-text">Main Menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
